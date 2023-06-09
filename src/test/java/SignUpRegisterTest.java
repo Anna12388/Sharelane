@@ -13,7 +13,8 @@ public class SignUpRegisterTest extends BaseTest {
         driver.findElement(By.name("password1")).sendKeys("12345");
         driver.findElement(By.name("password2")).sendKeys("12345");
         driver.findElement(By.cssSelector("[value='Register']")).click();
-        boolean confirmMessage = driver.findElement(By.cssSelector("[class='confirmation message']")).isDisplayed();
+
+        boolean confirmMessage = driver.findElement(By.cssSelector("[class='confirmation_message']")).isDisplayed();
 
         assertTrue(confirmMessage,"Пользователь не перешел на страницу confirmation_message");
     }

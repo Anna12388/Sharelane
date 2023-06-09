@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 
-public class SignUpTest {
+public class SignUpTestZipCodeTest extends BaseTest {
     WebDriver driver;
 
     @BeforeMethod

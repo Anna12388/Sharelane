@@ -15,10 +15,12 @@ public class HerokuAppTest extends BaseTest {
         addElementButton.click();
 
        List<WebElement> deleteButtonsList = driver.findElements(By.cssSelector("[onclick='deleteElement()']"));
+
         assertEquals(deleteButtonsList.size(),2, "Элемента не два");
 
         deleteButtonsList.get(0).click();
         driver.findElements(By.cssSelector("[onclick='deleteElement()']"));
+
         assertEquals(deleteButtonsList.size(),1,"Элемента не 2");
 
     }

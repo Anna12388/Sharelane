@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
     WebDriver driver;
+    String BASE_URL = "https://www.sharelane.com/";
 
     @BeforeMethod
     public void setUp(){
@@ -16,13 +17,13 @@ public class BaseTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
         options.addArguments("-incognito");
-        options.addArguments("--headless");
+//        options.addArguments("--headless");
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
     }
-    @AfterMethod(alwaysRun = true)
-    public void tearDown(){
-        driver.quit();
+//    @AfterMethod(alwaysRun = true)
+//    public void tearDown(){
+//        driver.quit();
     }
-}
+

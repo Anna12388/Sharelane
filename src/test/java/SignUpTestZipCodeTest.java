@@ -10,6 +10,10 @@ import static org.testng.Assert.*;
 
 
 public class SignUpTestZipCodeTest extends BaseTest {
+    String zipCodeInputLocator = "zip_code";
+    String continueButtonLocator = "[value=Continue]";
+    String errorMessageLocator = "[class=error_message]";
+
     WebDriver driver;
 
     @BeforeMethod
@@ -25,9 +29,9 @@ public class SignUpTestZipCodeTest extends BaseTest {
 
         driver.get("https://www.sharelane.com/cgi-bin/register.py");
 
-        driver.findElement(By.name("zip_code")).sendKeys("12345");
+        driver.findElement(By.name(zipCodeInputLocator)).sendKeys("12345");
 
-        driver.findElement(By.cssSelector("[value=Continue]")).click();
+        driver.findElement(By.cssSelector(continueButtonLocator)).click();
 
         boolean isDisplayed = driver.findElement(By.cssSelector("[value=Register]")).isDisplayed();
         assertTrue(isDisplayed, "Нужная страница не открылась");
@@ -39,12 +43,12 @@ public class SignUpTestZipCodeTest extends BaseTest {
     public void enter4DigitsInTheZip_codeField() {
 
 
-        driver.get("https://www.sharelane.com/cgi-bin/register.py");
+        driver.get(BASE_URL + "cgi-bin/register.py");
 
-        WebElement zipCodeInput = driver.findElement(By.name("zip_code"));
+        WebElement zipCodeInput = driver.findElement(By.name(zipCodeInputLocator));
         zipCodeInput.sendKeys("1234");
 
-        WebElement continueButton = driver.findElement(By.cssSelector("[value=Continue]"));
+        WebElement continueButton = driver.findElement(By.cssSelector(continueButtonLocator));
         continueButton.click();
 
         WebElement errorMessage = driver.findElement(By.cssSelector("[value=classErrorMessage]"));
@@ -52,9 +56,15 @@ public class SignUpTestZipCodeTest extends BaseTest {
         assertEquals(text, "Oops, error on page. ZIP code should have 5 digits", "Сообщение не отображается");
 
     }
-    @AfterMethod(alwaysRun = true)
-    public void tearDown(){
-        driver.quit();
+
+    @Test
+    public void leaveZipCodeFieldEmpty(){
+
+        driver.get(BASE_URL + "cgi-bin/register.py");
+        driver.findElement(By.cssSelector(continueButtonLocator)).click();
+        String text = driver.findElement(By.cssSelector(errorMessageLocator)).getText();
+
+        assertEquals(text, "Oops, error on page. ZIP code should have 5 digits","Other text");
     }
 }
 

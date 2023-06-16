@@ -11,7 +11,7 @@ public class BaseTest {
     String BASE_URL = "https://www.sharelane.com/";
 
     @BeforeMethod
-    public void setUp() {
+    public void setUp(){
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
@@ -20,7 +20,8 @@ public class BaseTest {
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
-    @AfterMethod(alwaysRun = true)
-    public void tearDown() { driver.quit();    }
+//    @AfterMethod(alwaysRun = true)
+//    public void tearDown() {
+//        driver.quit();    }
 }
 
